@@ -20,5 +20,8 @@
   },
   "autoload": {
     "classmap": ["lib/"]
-  }
+  },
+  "bin": [
+    "lib/"
+  ]
 }
