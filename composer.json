@@ -15,7 +15,7 @@
     "test": "composer single && composer local && composer parallel",
     "single": "./bin/behat --config=config/single.conf.yml",
     "local": "./bin/behat --config=config/local.conf.yml",
-    "capabilities": "METHOD=capabilities php lib/BrowserStackMethods.php",
+    "capabilities": "ENV_FILE=/../.env METHOD=capabilities php lib/BrowserStackMethods.php",
     "parallel": "CONFIG_FILE=config/parallel.conf.yml /usr/bin/env php lib/parallel.php"
   },
   "autoload": {
