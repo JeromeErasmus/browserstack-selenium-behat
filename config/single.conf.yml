@@ -1,0 +1,16 @@
+default:
+    paths:
+        features: '../features/single'
+        bootstrap:  '../features/bootstrap'
+    context:
+        parameters:
+            browserstack:
+                server: "hub-cloud.browserstack.com"
+                capabilities:
+                    build: "behat-browserstack"
+                    name: "single_test"
+                    "browserstack.debug": true
+
+                environments:
+                    -
+                        browser: "chrome"
