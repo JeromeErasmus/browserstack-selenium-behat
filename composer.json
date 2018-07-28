@@ -13,15 +13,15 @@
   },
   "scripts": {
     "test": "composer single && composer local && composer parallel",
-    "single": "./bin/behat --config=config/single.conf.yml",
-    "local": "./bin/behat --config=config/local.conf.yml",
-    "capabilities": "ENV_FILE=/../.env METHOD=capabilities php lib/BrowserStackMethods.php",
-    "parallel": "CONFIG_FILE=config/parallel.conf.yml /usr/bin/env php lib/parallel.php"
+    "single": "ENV_FILE=/../../.env ./bin/behat --config=app/config/single.conf.yml",
+    "local": "ENV_FILE=/../../.env ./bin/behat --config=app/config/local.conf.yml",
+    "capabilities": "ENV_FILE=/../../.env METHOD=capabilities php app/lib/BrowserStackMethods.php",
+    "parallel": "ENV_FILE=/../../.env CONFIG_FILE=app/config/parallel.conf.yml /usr/bin/env php app/lib/parallel.php"
   },
   "autoload": {
-    "classmap": ["lib/"]
+    "classmap": ["app/lib/"]
   },
   "bin": [
-    "lib/"
+    "app/lib/"
   ]
 }

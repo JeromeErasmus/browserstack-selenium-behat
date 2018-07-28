@@ -1,0 +1,17 @@
+default:
+    paths:
+        features: '../../features/local'
+        bootstrap:  '../../features/bootstrap'
+    context:
+        parameters:
+            browserstack:
+                server: "hub-cloud.browserstack.com"
+                capabilities:
+                    build: "behat-browserstack"
+                    name: "local_test"
+                    "browserstack.debug": true
+                    "browserstack.local": true
+
+                environments:
+                    -
+                        browser: "chrome"

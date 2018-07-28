@@ -12,7 +12,7 @@ class BrowserStackContext extends Behat\Behat\Context\BehatContext
 
     public function __construct($parameters){
         self::$dotenv = new Dotenv();
-        self::$dotenv->load(dirname(__FILE__).'/../.env');
+        self::$dotenv->load(dirname(__FILE__). getenv('ENV_FILE'));
         
         $GLOBALS['CONFIG'] = $parameters["browserstack"];
         $GLOBALS['BROWSERSTACK_USERNAME'] = getenv('BROWSERSTACK_USERNAME');
