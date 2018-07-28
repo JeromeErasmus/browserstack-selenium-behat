@@ -1,4 +1,5 @@
 {
+  "name": "master/browserstack-automate-behat",
   "require": {
       "behat/behat": "2.5.*@stable",
 	    "facebook/webdriver": "dev-master",
