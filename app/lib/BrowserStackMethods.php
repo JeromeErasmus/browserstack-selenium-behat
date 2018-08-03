@@ -35,8 +35,8 @@ class BrowserStackMethods
         $this->client = new Client();
         $this->auth = [
             'auth' => [
-                getenv('BROWSERSTACK_USERNAME'),
-                getenv('BROWSERSTACK_ACCESS_KEY'),
+                $GLOBALS['BROWSERSTACK_USERNAME'],
+                $GLOBALS['BROWSERSTACK_ACCESS_KEY'],
             ],
         ];
     }

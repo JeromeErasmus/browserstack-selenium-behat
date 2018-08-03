@@ -1,12 +1,13 @@
 default:
     paths:
-        features: '../features/local'
-        bootstrap:  '../features/bootstrap'
+        features: '../../features/local'
+        bootstrap:  '../../features/bootstrap'
     context:
         parameters:
             browserstack:
                 server: "hub-cloud.browserstack.com"
                 capabilities:
+                    project: "test-project"
                     build: "behat-browserstack"
                     name: "local_test"
                     "browserstack.debug": true
