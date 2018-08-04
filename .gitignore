@@ -1,0 +1,9 @@
+composer.lock
+composer.phar
+local.log
+.env
+vendor/
+bin/
+results/
+client/build/*
+client/node_modules/*
