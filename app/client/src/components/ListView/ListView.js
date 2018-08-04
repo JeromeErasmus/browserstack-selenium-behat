@@ -2,9 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import {
   Link
 } from 'react-router-dom';
+
 import ListItem from './../ListItem/ListItem';
 
 class Layout extends React.Component {
@@ -88,6 +91,24 @@ class Layout extends React.Component {
     return row.status;
   }
 
+  statusFormatter(row) {
+    if(!row) {
+      return '';
+    }
+    let cIcon;
+
+    switch (row) {
+      case 'done':
+        cIcon = faCheckCircle;
+        break;
+    
+      default:
+        cIcon = faCheckCircle;
+        break;
+    }
+    return <FontAwesomeIcon icon={cIcon}/>
+  }
+
   render() {
     return (
       <div>
@@ -98,16 +119,21 @@ class Layout extends React.Component {
             dataField='hashed_id' 
             isKey={ true }>Session ID</TableHeaderColumn>
           <TableHeaderColumn
-            dataField='result'>Result</TableHeaderColumn>
-          <TableHeaderColumn
+            width="100"
             dataField='logs'
             dataFormat={this.buttonFormatter}>Logs</TableHeaderColumn>
           <TableHeaderColumn
+            width="150"
             dataField='public_url'
             dataFormat={this.buttonFormatter}>Public Logs</TableHeaderColumn>
           <TableHeaderColumn
+            width="150"
             dataField='browser_console_logs_url'
             dataFormat={this.buttonFormatter}>Console Logs</TableHeaderColumn>
+          <TableHeaderColumn
+            width="80"
+            dataField='status'
+            dataFormat={this.statusFormatter}>Status</TableHeaderColumn>
         </BootstrapTable>
       </div>
     );

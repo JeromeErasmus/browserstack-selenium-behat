@@ -1,0 +1,12 @@
+.react-bs-table .fa-check-circle {
+    color: #55ac90;
+    text-align: center;
+}
+.done {
+    /* background-color: #55ac90; */
+}
+
+.error {
+    background-color: #e96565;
+    color: #FFF;
+}
