@@ -1,0 +1,10 @@
+# behat.yml
+default:
+    extensions:
+        Behat\MinkExtension:
+            sessions:
+                my_session:                
+                    browser_stack: 
+                        username: "nathandailo1"
+                        access_key: "vBA1X4UbENrEwN4BeEB2"
+                        capabilities: {"browser" :"Chrome", "os": "OS X", "os_version": "Yosemite", "browserstack-debug": true}
