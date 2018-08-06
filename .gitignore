@@ -7,3 +7,4 @@ bin/
 results/
 client/build/*
 client/node_modules/*
+conf.*

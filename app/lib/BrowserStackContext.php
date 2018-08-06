@@ -30,7 +30,7 @@ class BrowserStackContext extends RawMinkContext implements Context, SnippetAcce
     private static $bs_local;
     private static $dotenv;
 
-    public function __construct(){
+    public function __construct() {
         // self::$dotenv = new Dotenv();
         // self::$dotenv->load(dirname(__FILE__). getenv('ENV_FILE'));
     }
@@ -91,7 +91,14 @@ class BrowserStackContext extends RawMinkContext implements Context, SnippetAcce
     /** @AfterScenario */
     public static function afterScrenario(AfterScenarioScope $scope)
     {
-        // var_dump($scope->getScenario());die();
+        echo '----------------------------------------------------'.PHP_EOL;
+        // var_dump(self::$driver->getSession());
+        echo 'name : '.$scope->getName().PHP_EOL;
+        // var_dump($scope->getTestResults());
+        echo 'result code : '.$scope->getTestResult()->getResultCode().PHP_EOL;
+        echo 'is passed : '.$scope->getTestResult()->isPassed() ? 'true' : 'false'.PHP_EOL;
+        var_dump($scope->getEnvironment()->getSuite()->getSetting());
+        echo '----------------------------------------------------';
     }
 
     
