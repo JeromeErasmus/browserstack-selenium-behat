@@ -7,40 +7,9 @@ use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 
-class FeatureContext extends BrowserStackContext {
-  // /** @Given /^I am on "([^"]*)"$/ */
-  // public function iAmOnSite($url) {
-  //   $this->getSession()->visit('http://tss-test-site.s3-website-ap-southeast-2.amazonaws.com/signin');
-  //   // self::$driver->get($url);
-  // }
-
-  // /** @When /^I search for "([^"]*)"$/ */
-  // public function iSearchFor($searchText) {
-  //   $element = self::$driver->findElement(WebDriverBy::name("q"));
-  //   $element->sendKeys($searchText);
-  //   $element->submit();
-  //   sleep(5);
-  // }
-
-  // /** @Then /^I get title as "([^"]*)"$/ */
-  // public function iShouldGet($string) {
-  //   $title = self::$driver->getTitle();
-  //   if ((string)  $string !== $title) {
-  //     throw new Exception("Expected title: '". $string. "'' Actual is: '". $title. "'");
-  //   }
-  // }
-
-  // /** @Then /^I should see "([^"]*)"$/ */
-  // public function iShouldSee($string) {
-  //   $source = self::$driver->getPageSource();
-  //   if (strpos($source, $string) === false) {
-  //     throw new Exception("Expected to see: '". $string. "'' Actual is: '". $source. "'");
-  //   }
-  // }
-
-
-  // ------------------------------------------
-  /**
+class FeatureContext extends BrowserStackContext
+{
+    /**
      * @Given I am on the login page
      */
     public function iAmOnTheLoginPage()

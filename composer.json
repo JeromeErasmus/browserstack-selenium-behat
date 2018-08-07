@@ -18,15 +18,10 @@
       "bin-dir": "bin/"
   },
   "scripts": {
-    "test": "composer single && composer local && composer parallel",
-    "single": "ENV_FILE=/../config/.env ./bin/behat --config=app/config/single.conf.yml",
-    "local": "ENV_FILE=/../config/.env ./bin/behat --config=app/config/local.conf.yml",
-    "capabilities": "ENV_FILE=/../config/.env METHOD=capabilities php app/lib/BrowserStackMethods.php",
-    "parallel": "ENV_FILE=/../config/.env CONFIG_FILE=app/config/parallel.conf.yml /usr/bin/env php app/lib/parallel.php",
-
     "start-selenium": "./bin/manager start",
-    "run-selenium": "./bin/behat --config=./conf.selenium.yml",
-    "run-bs": "./bin/behat --config=./conf.browserstack.yml"
+    "run-selenium": "./bin/behat --config=./conf.selenium.yml -f pretty -o std -f junit -o results",
+    "run-bs": "ENV_FILE=/../../.env ./bin/behat --config=./conf.browserstack.yml"
+    
   },
   "autoload": {
     "classmap": ["app/lib/"]

@@ -1,4 +1,4 @@
-Feature: Login TSS
+Feature: Password Reset and Recovery
     As a user I want to retrieve my lost password
     
     Scenario: Reset Password

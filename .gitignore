@@ -4,7 +4,7 @@ local.log
 .env
 vendor/
 bin/
-results/
+results/*
 client/build/*
 client/node_modules/*
 conf.*

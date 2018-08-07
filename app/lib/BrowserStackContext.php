@@ -12,65 +12,86 @@ use Behat\Behat\Hook\Scope\BeforeFeatureScope;
 use Behat\Behat\Hook\Scope\AfterFeatureScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
+use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
+use Behat\Mink\Driver\SeleniumDriver;
+use Selenium\Client;
+use Behat\Mink\Session;
 
 /**
  * Defines application features from the specific context.
  */
 class BrowserStackContext extends RawMinkContext implements Context, SnippetAcceptingContext
 {
-// use Symfony\Component\Dotenv\Dotenv;
-// use Behat\Behat\Event\FeatureEvent;
-// use Behat\Behat\Event\ScenarioEvent;
-// use Behat\Behat\Context\Context;
-
-// class BrowserStackContext extends Context
-// {
     protected $CONFIG;
     protected static $driver;
-    private static $bs_local;
     private static $dotenv;
 
-    public function __construct() {
-        // self::$dotenv = new Dotenv();
-        // self::$dotenv->load(dirname(__FILE__). getenv('ENV_FILE'));
-    }
+    public function __construct(array $parameters = array())
+    {
+        if(array_key_exists('browserstack', $parameters))
+        {
+            $GLOBALS['CONFIG'] = $parameters['browserstack'];
+            $GLOBALS['BROWSERSTACK_USERNAME'] = 'nathandailo1';
+            $GLOBALS['BROWSERSTACK_ACCESS_KEY'] = 'vBA1X4UbENrEwN4BeEB2';
+        }
 
-    // public function __construct($parameters){
-    //     self::$dotenv = new Dotenv();
-    //     self::$dotenv->load(dirname(__FILE__). getenv('ENV_FILE'));
         
-    //     $GLOBALS['CONFIG'] = $parameters["browserstack"];
-    //     $GLOBALS['BROWSERSTACK_USERNAME'] = getenv('BROWSERSTACK_USERNAME');
-    //     $GLOBALS['BROWSERSTACK_ACCESS_KEY'] = getenv('BROWSERSTACK_ACCESS_KEY');
-    // }
+    }
+    
+    /**
+     * @BeforeSuite
+     */
+    public static function prepare(BeforeSuiteScope $scope)
+    {
+        // var_dump($scope->getEnvironment());
+        // There is a neater way to do the below with BeHat 3.
+        // Much of this is dependant on the .conf setup which is not that well documented in BeHat.
+        // $settings = $scope->getSuite()->getSettings();
+        // if($settings['contexts'] && count($settings['contexts']))
+        // {
+        //     $fContext = $settings['contexts'][0];
+          
+        //     if($fContext && $fContext['FeatureContext'])
+        //     {
+        //         $GLOBALS['CONFIG'] = $fContext["FeatureContext"]['parameters'];
+        //         $GLOBALS['BROWSERSTACK_USERNAME'] = 'nathandailo1';
+        //         $GLOBALS['BROWSERSTACK_ACCESS_KEY'] = 'vBA1X4UbENrEwN4BeEB2';
+        //         // var_dump($fContext["FeatureContext"]['parameters']);die();
+        //     }
+        // }
+    }
 
     /** @BeforeFeature */
     public static function setup(BeforeFeatureScope $scope)
     {
-        // $CONFIG = $GLOBALS['CONFIG'];
-        // $task_id = getenv('TASK_ID') ? getenv('TASK_ID') : 0;
+        echo "BEFORE FEATURE!";
         
-        // $url = "https://" . $GLOBALS['BROWSERSTACK_USERNAME'] . ":" . $GLOBALS['BROWSERSTACK_ACCESS_KEY'] . "@" . $CONFIG['server'] ."/wd/hub";
-        // $caps = $CONFIG['environments'][$task_id];
-        
-        // foreach ($CONFIG["capabilities"] as $key => $value) {
-        //     if(!array_key_exists($key, $caps))
-        //     $caps[$key] = $value;
-        // }
-        
-        // $caps['browserstack.debug'] = true;
-        // $caps['browserstack.console'] = 'errors';
-        // $caps['browserstack.networkLogs'] = true;
-        
-        // if(array_key_exists("browserstack.local", $caps) && $caps["browserstack.local"])
+        // I am going to re-write the below. It's going to be run differently form the shell script. 
+
+        // Manually set up a driver session if this is a browserstack runner. 
+        // We want to manyally set them up as we will be wanting to exexute multiple Features in parallel for different OS in BS 
+        // if($GLOBALS['CONFIG'] && $GLOBALS['CONFIG']['browserstack'])
         // {
-        //     $bs_local_args = array("key" => $GLOBALS['BROWSERSTACK_ACCESS_KEY']);
-        //     self::$bs_local = new BrowserStack\Local();
-        //     self::$bs_local->start($bs_local_args);
+        //     $config = $GLOBALS['CONFIG']['browserstack'];
+        //     $capabilities = $GLOBALS['CONFIG']['capabilities'];
+        //     $task_id = getenv('TASK_ID') ? getenv('TASK_ID') : 0;
+        //     $url = "https://" . $config['username'] . ":" . $config['access_key'] . "@" . $config['server'] ."/wd/hub";
+
+        //     // $caps['browserstack.debug'] = true;
+        //     // $caps['browserstack.console'] = 'errors';
+        //     // $caps['browserstack.networkLogs'] = true;
+
+        //     self::$driver = RemoteWebDriver::create($url, $capabilities);
+
+        //     // init sessions
+        //     // $session = new \Behat\Mink\Session(self::$driver);
+
+        //     // start sessions
+        //     $session->start();
         // }
-        
-        // self::$driver = RemoteWebDriver::create($url, $caps);
-        // var_dump(self::$driver->getSessionID());
+
+//         self::$driver = RemoteWebDriver::create("https://nathandailo1:vBA1X4UbENrEwN4BeEB2@hub-cloud.browserstack.com/wd/hub",
+//   array("platform"=>"WINDOWS", "browserName"=>"firefox"));
     }
 
     
@@ -78,26 +99,36 @@ class BrowserStackContext extends RawMinkContext implements Context, SnippetAcce
     /** @AfterFeature */
     public static function tearDown()
     {
-        // self::$driver->quit();
-        // if(self::$bs_local) self::$bs_local->stop();
+        if(self::$driver) {
+            self::$driver->quit();
+        }
+    }
+
+    /** @AfterFeature */
+    public static function afterFeature(AfterFeatureScope $scope)
+    {
+        
     }
 
     /** @BeforeScenario */
-    public static function beforeScrenario(BeforeScenarioScope $scope)
+    public function beforeScenario(BeforeScenarioScope $scope)
     {
-        // var_dump($scope->getContext());die();
+        var_dump($this->getMink());
+        // get the webdriver session
+        // var_dump($this->getSession()->getDriver()->getWebDriverSession());
+        // var_dump($this->getSession()->getDriver()->getWebDriverSessionId());
     }
 
     /** @AfterScenario */
-    public static function afterScrenario(AfterScenarioScope $scope)
+    public function afterScrenario(AfterScenarioScope $scope)
     {
         echo '----------------------------------------------------'.PHP_EOL;
         // var_dump(self::$driver->getSession());
         echo 'name : '.$scope->getName().PHP_EOL;
         // var_dump($scope->getTestResults());
         echo 'result code : '.$scope->getTestResult()->getResultCode().PHP_EOL;
-        echo 'is passed : '.$scope->getTestResult()->isPassed() ? 'true' : 'false'.PHP_EOL;
-        var_dump($scope->getEnvironment()->getSuite()->getSetting());
+        echo 'is passed : '.($scope->getTestResult()->isPassed() ? 'true' : 'false').PHP_EOL;
+        
         echo '----------------------------------------------------';
     }
 
