@@ -5,8 +5,8 @@
 * Clone the repo into your project root
 * Cd into the repo folder on your local machine
 * Install dependencies `composer install`
-* First copy dist.*.conf.yml to `*.conf.yml` and then edit them to match your project path specifications. e.g. dist.local.conf.yml is saved as a new file local.conf.yml
-* create a new .env file in the config folder .env file from the .dist.env file and update with your browserstack keys
+* First copy dist.conf.selenium.yml and dist.conf.browserstack.yml to conf.selenium.yml and conf.browserstack.yml and then edit them to match your project specifications.
+* Then copy the dist.env file to .env and update with your browserstack keys
 
 ### Creating the capabilities config
 You define a capabilities configuration file to explicity set which browsers / devices / operating systems you will test on. To get the full updated list of capabilities from browserstack run the following command:
@@ -14,25 +14,25 @@ You define a capabilities configuration file to explicity set which browsers / d
 composer capabilities
 ```
 
-This will bring down an exhaustive list of ALL capabilities. Look through the list and pick out the capabilities you want to run your tests on. Create a new file in the config folder called capabilities_set.json and copy the capabilities you want to test on into the file. Use the dist.capabilities_set.json as a guide. 
-
-## Define where your tests reside in your project
-Each project has unique tests associated with it. This library takes into account that you may have a variety of different project structures and that your test may be located in different locations from project to project. To point the to your files configure your config/*.yml files to your test paths. by default they are as follows:
-```
-default:
-    paths:
-        features: '../features/single'
-``` 
+This will bring down an exhaustive list of ALL capabilities. Look through the list and pick out the capabilities you want to run your tests on. You can use these capabilities to update your .yml files
 
 Once the above is done correctly you will be able to run your tests.
 
-## Running your tests
-- To run a single test, run `composer single`
-- To run local tests, run `composer local`
-- To run parallel tests, run `composer parallel`
+## Running the Selenium tests 
+You first need to install selenium on your machine in order to run the Selenium tests. On OSX this should be as easy as: 
+```
+brew install selenium-server-standalone
+```
+Then perform the below:
+- First start Selenium `composer start-selenium`
+- Then run the test `composer run-selenium`
+
+## Running the Browserstack tests 
+- To run a test in browserstack execute `composer run-bs`
 
 
-# Manufaturing tests by the dozen
+### Manufaturing tests by the dozen
+The below is some basic workflow tips to save you some time. The below is not essential to running your tests.
 
 Scaffold a BeHat project structure and key files
 - ./bin/behat --init

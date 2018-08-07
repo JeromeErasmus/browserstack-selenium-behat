@@ -28,14 +28,12 @@ class BrowserStackContext extends RawMinkContext implements Context, SnippetAcce
 
     public function __construct(array $parameters = array())
     {
-        if(array_key_exists('browserstack', $parameters))
-        {
-            $GLOBALS['CONFIG'] = $parameters['browserstack'];
-            $GLOBALS['BROWSERSTACK_USERNAME'] = 'nathandailo1';
-            $GLOBALS['BROWSERSTACK_ACCESS_KEY'] = 'vBA1X4UbENrEwN4BeEB2';
-        }
-
-        
+        // if(array_key_exists('browserstack', $parameters))
+        // {
+        //     $GLOBALS['CONFIG'] = $parameters['browserstack'];
+        //     $GLOBALS['BROWSERSTACK_USERNAME'] = 'nathandailo1';
+        //     $GLOBALS['BROWSERSTACK_ACCESS_KEY'] = 'vBA1X4UbENrEwN4BeEB2';
+        // }
     }
     
     /**
@@ -64,8 +62,6 @@ class BrowserStackContext extends RawMinkContext implements Context, SnippetAcce
     /** @BeforeFeature */
     public static function setup(BeforeFeatureScope $scope)
     {
-        echo "BEFORE FEATURE!";
-        
         // I am going to re-write the below. It's going to be run differently form the shell script. 
 
         // Manually set up a driver session if this is a browserstack runner. 
@@ -113,7 +109,6 @@ class BrowserStackContext extends RawMinkContext implements Context, SnippetAcce
     /** @BeforeScenario */
     public function beforeScenario(BeforeScenarioScope $scope)
     {
-        var_dump($this->getMink());
         // get the webdriver session
         // var_dump($this->getSession()->getDriver()->getWebDriverSession());
         // var_dump($this->getSession()->getDriver()->getWebDriverSessionId());
