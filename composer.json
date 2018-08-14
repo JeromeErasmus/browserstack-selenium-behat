@@ -1,5 +1,5 @@
 {
-  "name": "jeromeerasmus/browserstack-automate-behat",
+  "name": "jeromeerasmus/selenium-automate",
   "require": {
     "facebook/webdriver": "dev-master",
     "browserstack/browserstack-local": "dev-master",
@@ -19,10 +19,10 @@
   },
   "scripts": {
     "capabilities": "ENV_FILE=/../../.env METHOD=capabilities php app/lib/BrowserStackMethods.php",
-    "start-selenium": "./bin/manager start",
-    "run-selenium": "./bin/behat --config=./conf.selenium.yml -f pretty -o std -f junit -o results",
-    "run-bs": "ENV_FILE=/../../.env ./bin/behat --config=./conf.browserstack.yml"
-    
+    "start-selenium": "bin/manager start",
+    "run-selenium": "bin/behat --config=conf.selenium.yml -f pretty -o std -f junit -o results",
+    "run-bs": "ENV_FILE=/../../.env ./bin/behat --config=conf.browserstack.yml",
+    "run-bs-parallel": "ENV_FILE=/../../.env CONFIG_FILE=./conf.browserstack-parallel.yml /usr/bin/env php app/lib/parallel.php"
   },
   "autoload": {
     "classmap": ["app/lib/"]
