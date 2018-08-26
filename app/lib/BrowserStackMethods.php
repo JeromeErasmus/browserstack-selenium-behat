@@ -27,7 +27,7 @@ class BrowserStackMethods
     public function __construct(string $method = null)
     {
         self::$dotenv = new Dotenv();
-        self::$dotenv->load(dirname(__FILE__) . '/../.env');
+        self::$dotenv->load(dirname(__FILE__) . getenv('ENV_FILE'));
 
         $GLOBALS['BROWSERSTACK_USERNAME'] = getenv('BROWSERSTACK_USERNAME');
         $GLOBALS['BROWSERSTACK_ACCESS_KEY'] = getenv('BROWSERSTACK_ACCESS_KEY');
@@ -35,8 +35,8 @@ class BrowserStackMethods
         $this->client = new Client();
         $this->auth = [
             'auth' => [
-                getenv('BROWSERSTACK_USERNAME'),
-                getenv('BROWSERSTACK_ACCESS_KEY'),
+                $GLOBALS['BROWSERSTACK_USERNAME'],
+                $GLOBALS['BROWSERSTACK_ACCESS_KEY'],
             ],
         ];
     }

@@ -1,0 +1,23 @@
+{
+    "automation_session": {
+        "name": "single_test",
+        "duration": 49,
+        "os": "OS X",
+        "os_version": "Snow Leopard",
+        "browser_version": "49.0",
+        "browser": "chrome",
+        "device": null,
+        "status": "done",
+        "hashed_id": "f4ffca28ee4adf2405ece54d934d5c5b6a78d9fe",
+        "reason": "CLIENT_STOPPED_SESSION",
+        "build_name": "behat browserstack",
+        "project_name": "test project",
+        "logs": "https://automate.browserstack.com/builds/d2cf5ea9f3ddedd777363692950b8466ca14e6ce/sessions/f4ffca28ee4adf2405ece54d934d5c5b6a78d9fe/logs",
+        "browser_url": "https://automate.browserstack.com/builds/d2cf5ea9f3ddedd777363692950b8466ca14e6ce/sessions/f4ffca28ee4adf2405ece54d934d5c5b6a78d9fe",
+        "public_url": "https://automate.browserstack.com/builds/d2cf5ea9f3ddedd777363692950b8466ca14e6ce/sessions/f4ffca28ee4adf2405ece54d934d5c5b6a78d9fe?auth_token=9a874098506b7894dc11b1e6e678fcc41df0ae5fc7e1443158bac2b30349aae2",
+        "appium_logs_url": "https://api.browserstack.com/automate/builds/d2cf5ea9f3ddedd777363692950b8466ca14e6ce/sessions/f4ffca28ee4adf2405ece54d934d5c5b6a78d9fe/appiumlogs",
+        "video_url": "https://automate.browserstack.com/s3-upload/bs-video-logs-usw/s3-us-west-1/f4ffca28ee4adf2405ece54d934d5c5b6a78d9fe/video-f4ffca28ee4adf2405ece54d934d5c5b6a78d9fe.mp4?AWSAccessKeyId=AKIAIN2TCEEW2SVRV5JA\u0026Expires=1541310745\u0026Signature=vLG0mfitgR3DE2J0yg%2BanICNfAs%3D\u0026response-content-type=video%2Fmp4\u0026source=rest_api\u0026diff=116516.277220856",
+        "browser_console_logs_url": "https://automate.browserstack.com/s3-upload/bs-selenium-logs-usw/s3-us-west-1/f4ffca28ee4adf2405ece54d934d5c5b6a78d9fe/f4ffca28ee4adf2405ece54d934d5c5b6a78d9fe-console-logs.txt?AWSAccessKeyId=AKIAIN2TCEEW2SVRV5JA\u0026Expires=1541310745\u0026Signature=ePzY2JvOFulhwMx%2F2L2rTrVS2OU%3D\u0026response-content-type=text%2Fplain",
+        "har_logs_url": "https://automate.browserstack.com/s3-upload/bs-video-logs-usw/s3-us-west-1/f4ffca28ee4adf2405ece54d934d5c5b6a78d9fe/f4ffca28ee4adf2405ece54d934d5c5b6a78d9fe-har-logs.txt?AWSAccessKeyId=AKIAIN2TCEEW2SVRV5JA\u0026Expires=1541310745\u0026Signature=Gt%2BQc6aEI2wSN7dC%2BnOzA1j6Gdo%3D"
+    }
+}

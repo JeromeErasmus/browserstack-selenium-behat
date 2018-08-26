@@ -1,25 +1,33 @@
 {
-  "name": "master/browserstack-automate-behat",
+  "name": "jeromeerasmus/selenium-automate",
   "require": {
-      "behat/behat": "2.5.*@stable",
-	    "facebook/webdriver": "dev-master",
-      "browserstack/browserstack-local": "dev-master",
-      "symfony/yaml": "*",
+    "facebook/webdriver": "dev-master",
+    "browserstack/browserstack-local": "dev-master",
+
     "symfony/dotenv": "^4.1",
-    "symfony/http-foundation": "^4.1",
-    "guzzlehttp/guzzle": "^6.3"
+    "guzzlehttp/guzzle": "^6.3",
+    "behat/behat": "^3.4",
+    "behat/mink": "^1.7",
+    "behat/mink-extension": "^2.3",
+    "behat/mink-goutte-driver": "^1.2",
+    "behat/mink-selenium2-driver": "^1.3",
+    "peridot-php/webdriver-manager": "dev-master"
+   
   },
   "config": {
       "bin-dir": "bin/"
   },
   "scripts": {
-    "test": "composer single && composer local && composer parallel",
-    "single": "./bin/behat --config=config/single.conf.yml",
-    "local": "./bin/behat --config=config/local.conf.yml",
-    "capabilities": "METHOD=capabilities php lib/BrowserStackMethods.php",
-    "parallel": "CONFIG_FILE=config/parallel.conf.yml /usr/bin/env php lib/parallel.php"
+    "capabilities": "ENV_FILE=/../../.env METHOD=capabilities php app/lib/BrowserStackMethods.php",
+    "start-selenium": "bin/manager start",
+    "run-selenium": "bin/behat --config=conf.selenium.yml -f pretty -o std -f junit -o results",
+    "run-bs": "ENV_FILE=/../../.env ./bin/behat --config=conf.browserstack.yml",
+    "run-bs-parallel": "ENV_FILE=/../../.env CONFIG_FILE=./conf.browserstack-parallel.yml /usr/bin/env php app/lib/parallel.php"
   },
   "autoload": {
-    "classmap": ["lib/"]
-  }
+    "classmap": ["app/lib/"]
+  },
+  "bin": [
+    "app/lib/"
+  ]
 }
