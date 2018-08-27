@@ -4,9 +4,8 @@
   "type": "library",
   "license": "MIT",
   "require": {
-    "facebook/webdriver": "dev-master",
-    "browserstack/browserstack-local": "dev-master",
-
+    "facebook/webdriver": "^1.6",
+    "browserstack/browserstack-local": "^1.1.0",
     "symfony/dotenv": "^3.2",
     "guzzlehttp/guzzle": "^6.3",
     "behat/behat": "^3.4",
@@ -14,7 +13,7 @@
     "behat/mink-extension": "^2.3",
     "behat/mink-goutte-driver": "^1.2",
     "behat/mink-selenium2-driver": "^1.3",
-    "peridot-php/webdriver-manager": "dev-master"
+    "peridot-php/webdriver-manager": "^1.3.1"
    
   },
   "config": {
