@@ -1,0 +1,34 @@
+# this uses the Alpine image to run the tests on
+# to access the docker container you can use: docker run -it --rm -v ${PWD}:/home petehouston/docker-alpine-php-composer /bin/sh
+# or 
+# docker run -it --rm jeromeerasmus/docker-alpine-php /bin/bash
+image: petehouston/docker-alpine-php-composer
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - node
+          - composer
+          - docker
+        services:
+          - docker
+        script: 
+          - apk --update && apk update
+          - apk add openrc --no-cache
+          - ifconfig
+          # Add bash
+          - apk add --no-cache py-pip bash 
+
+          # Add docker compose
+          - pip install --no-cache-dir docker-compose
+          - ls -la
+
+          # install composer
+          - composer install
+          
+      
+          # compose
+          - docker-compose build
+          - docker-compose run --rm specs ./features/ --config=conf.selenium-pipelines.yml
+          
