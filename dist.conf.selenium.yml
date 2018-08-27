@@ -1,0 +1,9 @@
+# behat.yml
+default:
+    extensions:
+        Behat\MinkExtension:
+            base_url: https://appointmentpro2.totalsellingsolutions.com.au/signin
+            sessions:
+              default:
+                selenium2:
+                  wd_host: http://127.0.0.1:4444/wd/hub

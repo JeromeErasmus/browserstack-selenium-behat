@@ -1,0 +1,32 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext:
+            parameters:
+              browserstack:
+                project: "test-project"
+                build: "behat-browserstack"
+                name: "local_test"
+                "browserstack.debug": true
+                "browserstack.local": false
+                browserstack.networkLogs: true
+                username: "<username>"
+                access_key: "<accesskey>"
+                server: "hub-cloud.browserstack.com"
+              capabilities: {"os": "OS X", "os_version": "Snow Leopard", "browser": "chrome", "device": null, "browserstack-debug": true, name: 'auto test'}
+       
+    
+  extensions:
+    Behat\MinkExtension:
+      sessions:
+        bs_session1:              
+          browser_stack:
+            username: "<username>"
+            access_key: "<accesskey>"
+            capabilities: {"os": "OS X", "os_version": "Snow Leopard", "browser": "chrome", "device": null, "browserstack-debug": true}
+        bs_session2:              
+          browser_stack:
+            username: "<username>"
+            access_key: "<accesskey>"
+            capabilities: {"os": "OS X", "os_version": "Snow Leopard", "browser": "firefox", "device": null, "browserstack-debug": true}

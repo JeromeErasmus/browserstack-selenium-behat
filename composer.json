@@ -4,7 +4,7 @@
     "facebook/webdriver": "dev-master",
     "browserstack/browserstack-local": "dev-master",
 
-    "symfony/dotenv": "^4.1",
+    "symfony/dotenv": "^3.2",
     "guzzlehttp/guzzle": "^6.3",
     "behat/behat": "^3.4",
     "behat/mink": "^1.7",
