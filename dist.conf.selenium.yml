@@ -2,7 +2,7 @@
 default:
     extensions:
         Behat\MinkExtension:
-            base_url: https://appointmentpro2.totalsellingsolutions.com.au/signin
+            base_url: https://<yourdomainname.com>
             sessions:
               default:
                 selenium2:
